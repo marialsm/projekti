@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+//HTTP requests are made to send and update the server’s data.
+//It requires working on Form data and HTTP calls; consequently, we need to import and
+//register HttpClientModule, FormsModule and ReactiveFormsModule 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
