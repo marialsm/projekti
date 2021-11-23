@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AddBookComponent } from './components/add-book/add-book.component';
@@ -11,12 +13,16 @@ import { BooksListComponent } from './components/books-list/books-list.component
     AppComponent,
     AddBookComponent,
     BookDetailComponent,
-    BooksListComponent
+    BooksListComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
