@@ -12,7 +12,7 @@ let Book = new Schema({
     type: String
   }
 }, {
-  collection: 'books'
+  collection: 'bookstore'
 })
 
 module.exports = mongoose.model('Book', Book)
