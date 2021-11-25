@@ -23,10 +23,11 @@ export class BookDetailComponent implements OnInit {
     private crudService: CrudService
   ) {
     this.getId = this.activatedRoute.snapshot.paramMap.get('id');
-
+//muokkasin tätä osaa, lisäsin kirjailijan
     this.crudService.GetBook(this.getId).subscribe((res) => {
       this.updateForm.setValue({
         name: res['name'],
+        author: res['author'],
         price: res['price'],
         description: res['description'],
       });
@@ -34,6 +35,7 @@ export class BookDetailComponent implements OnInit {
 
     this.updateForm = this.formBuilder.group({
       name: [''],
+      author: [''],
       price: [''],
       description: [''],
     });

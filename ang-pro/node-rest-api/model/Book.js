@@ -1,12 +1,16 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+//muokkasin tätä osaa ja yhdistin minun bookstore-collectioniin MongoDBCompassista
 let Book = new Schema({
   name: {
     type: String
   },
-  price: {
+  author: {
     type: String
+  },
+  price: {
+    type: Number
   },
   description: {
     type: String

@@ -21,7 +21,9 @@ export class AddBookComponent implements OnInit {
     private crudService: CrudService
   ) { 
     this.bookForm = this.formBuilder.group({
+      //muokkasin tätä osaa 
       name: [''],
+      author: [''],
       price: [''],
       description: ['']
     })
