@@ -3,12 +3,14 @@
 
 import { Component, OnInit } from '@angular/core';
 import { CrudService } from './../../service/crud.service';
+import { RouterModule} from '@angular/router';
 
 @Component({
   selector: 'app-books-list',
   templateUrl: './books-list.component.html',
   styleUrls: ['./books-list.component.scss']
 })
+
 
 export class BooksListComponent implements OnInit {
   
