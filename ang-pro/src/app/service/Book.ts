@@ -1,8 +1,8 @@
-//lisäsin kirjailijan ja hinnan tyypin
+//lisäsin kirjailijan 
 export class Book {
   _id!: String;
   name!: String;
   author!: String;
-  price!: Int32Array;
+  price!: String;
   description!: String;
 }

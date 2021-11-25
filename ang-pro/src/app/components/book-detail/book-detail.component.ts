@@ -9,7 +9,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 @Component({
   selector: 'app-book-detail',
   templateUrl: './book-detail.component.html',
-  styleUrls: ['./book-detail.component.scss'],
+  styleUrls: ['./book-detail.component.css'],
 })
 export class BookDetailComponent implements OnInit {
   getId: any;

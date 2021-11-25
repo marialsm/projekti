@@ -10,11 +10,15 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 
 export class CrudService {
 
+
   // Node/Express API
   REST_API: string = 'http://localhost:8000/api';
 
   // Http Header
   httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
+  searchOption: any;
+
+
 
   constructor(private httpClient: HttpClient) { }
 
@@ -74,5 +78,8 @@ export class CrudService {
     console.log(errorMessage);
     return throwError(errorMessage);
   }
+
+  
+
 
 }

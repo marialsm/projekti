@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 //muokkasin tätä osaa ja yhdistin minun bookstore-collectioniin MongoDBCompassista
-let Book = new Schema({
+const Book = new Schema({
   name: {
     type: String
   },
@@ -20,3 +20,5 @@ let Book = new Schema({
 })
 
 module.exports = mongoose.model('Book', Book)
+
+
