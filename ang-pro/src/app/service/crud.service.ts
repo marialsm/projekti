@@ -32,7 +32,7 @@ export class CrudService {
   }
 
   // Get all objects
-  GetBooks() {
+  GetBooks2() {
     return this.httpClient.get(`${this.REST_API}`);
   }
 
@@ -46,6 +46,17 @@ export class CrudService {
         catchError(this.handleError)
       )
   }
+    //Tämän olen lisännyt itse 
+    // Hae jokin tietty tai tietyt kirjat jonkun ehdon perusteella
+    GetBooks(): Observable<any> {
+      let API_URL = `${this.REST_API}/read-books/^G.*`;
+      return this.httpClient.get(API_URL, { headers: this.httpHeaders })
+        .pipe(map((res: any) => {
+            return res || {}
+          }),
+          catchError(this.handleError)
+        )
+    }
 
   // Update
   updateBook(id:any, data:any): Observable<any> {

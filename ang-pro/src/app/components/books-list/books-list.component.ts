@@ -25,6 +25,14 @@ export class BooksListComponent implements OnInit {
       this.Books =res;
     });    
   }
+   //Tämän olen lisännyt itse 
+  // Tämä hakee jonkin tietyn tai tietyt kirjat jonkin ehdon perusteella
+  searchbook(): void {
+    this.crudService.GetBooks().subscribe(res => {
+      console.log(res)
+      this.Books =res;
+    });    
+  }
 
   delete(id:any, i:any) {
     console.log(id);

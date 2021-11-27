@@ -34,7 +34,7 @@ app.use(cors());
 
 // Static directory path
 app.use(
-  express.static(path.join(__dirname, "dist/angular-mean-crud-tutorial"))
+  express.static(path.join(__dirname, "dist/ang-pro"))
 );
 
 // API root
@@ -59,7 +59,7 @@ app.get("/", (req, res) => {
 
 app.get("*", (req, res) => {
   res.sendFile(
-    path.join(__dirname, "dist/angular-mean-crud-tutorial/index.html")
+    path.join(__dirname, "dist/ang-pro/index.html")
   );
 });
 
