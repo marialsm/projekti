@@ -46,10 +46,22 @@ export class CrudService {
         catchError(this.handleError)
       )
   }
-    //Tämän olen lisännyt itse 
-    // Hae jokin tietty tai tietyt kirjat jonkun ehdon perusteella
-    GetBooks2(): Observable<any> {
-      let API_URL = `${this.REST_API}/read-books/^G.*`;
+    //Tämän olen yrittänyt lisätä funktio hakukenttää varten, eli jotta voisi hakea jotakin kirjaa/kirjoja
+    //  jonkun ehdon perusteella, mikä ei onnustunut 
+  
+  SearchBook(): Observable<any> {
+    let API_URL = `${this.REST_API}/read-book/^G.*`;
+    return this.httpClient.get(API_URL, { headers: this.httpHeaders })
+      .pipe(map((res: any) => {
+          return res || {}
+         }),
+        catchError(this.handleError)
+       )
+  }
+
+  //Tähän olen yritänyt lisätä funktion, jonka avulla voisi sortata esim. kirjailijoita, mikä ei toimi
+    FilterAuthor(): Observable<any> {
+      let API_URL = `${this.REST_API}/read-book/'author':1`;
       return this.httpClient.get(API_URL, { headers: this.httpHeaders })
         .pipe(map((res: any) => {
             return res || {}
@@ -57,12 +69,8 @@ export class CrudService {
           catchError(this.handleError)
         )
     }
+    
 
-
-    GetBooks3(): Observable<any> {
-      console.log("hello3");
-      return new Observable<any>();
-    }
 
   // Update
   updateBook(id:any, data:any): Observable<any> {
@@ -95,8 +103,5 @@ export class CrudService {
     console.log(errorMessage);
     return throwError(errorMessage);
   }
-
-  
-
 
 }

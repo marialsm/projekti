@@ -6,10 +6,18 @@ import { CrudService } from './../../service/crud.service';
 import { RouterModule } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import {MatSort, Sort} from '@angular/material/sort';
+import { MatSort, Sort } from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {LiveAnnouncer} from '@angular/cdk/a11y';
 import {AfterViewInit, ViewChild} from '@angular/core';
+
+export interface Book {
+ _id: String;
+  name: String;
+  author: String;
+  price: Number;
+  description: String;
+}
 
 @Component({
   selector: 'app-books-list',
@@ -19,27 +27,16 @@ import {AfterViewInit, ViewChild} from '@angular/core';
 export class BooksListComponent implements OnInit {
   Books: any = [];
   getId: any;
-
-  sortedData: BooksListComponent[];
+  sortedData: Book[];
   // displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-    
-
-
  //  updateForm: FormGroup;
 
-
-  constructor(
-    public formBuilder: FormBuilder,
-    private ngZone: NgZone,
-    private activatedRoute: ActivatedRoute,
-    private crudService: CrudService,
-    private _liveAnnouncer: LiveAnnouncer
+ constructor(
+  private crudService: CrudService
   ) {
-    // this.updateForm = 0;
-    this.sortedData = this.Books.slice();
-  }
-
-
+  // this.updateForm = 0;
+  this.sortedData = this.Books.slice();
+}
 
   ngOnInit(): void {
     this.crudService.GetBooks().subscribe((res) => {
@@ -49,20 +46,19 @@ export class BooksListComponent implements OnInit {
   }
   //Tämän olen lisännyt itse
   // Tämä hakee jonkin tietyn tai tietyt kirjat jonkin ehdon perusteella
-  searchbook(): void {
-    this.crudService.GetBooks().subscribe((res) => {
+  searchBook(): void {
+    this.crudService.SearchBook().subscribe((res) => {
       console.log(res);
       this.Books = res;
     });
-  }
+  } 
 
-  GetBooks3(): void {
-    console.log('hello3');
-  }
-
-  onUpdate(): any {
-    console.log('hello4');
-  }
+  authorFilter(): void {
+    this.crudService.FilterAuthor().subscribe((res) => {
+      console.log(res);
+      this.Books = res;
+    });
+  } 
 
   delete(id: any, i: any) {
     console.log(id);
@@ -73,13 +69,15 @@ export class BooksListComponent implements OnInit {
     }
   }
 
-
+//Tähän yritin lisätä omat filtterit, mitkä eivät toimi. Mutta ideana oli, että pystyisi näkemään kirjoja nimen,
+//kirjalijan ja hinnan perusteella nousevassa ja laskevassa järjestyksissä.
   sortData(sort: Sort) {
     const data = this.Books.slice();
     if (!sort.active || sort.direction === '') {
       this.sortedData = data;
       return;
-    }
+    };
+
 
     this.sortedData = data.sort((a: { name: string | number; author: string | number; price: string | number; }, b: { name: string | number; author: string | number; price: string | number; }) => {
       const isAsc = sort.direction === 'asc';
@@ -95,10 +93,8 @@ export class BooksListComponent implements OnInit {
       }
     });
   }
-}
+} 
 
 function compare(a: number | string, b: number | string, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
-
-
