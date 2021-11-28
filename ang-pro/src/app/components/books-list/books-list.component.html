@@ -8,23 +8,57 @@
  <div class="table-responsive">
    <!-- Lisäsin tähän hakukentän-->
   <div class="input-group mb-3">
-    <input type="text" class="form-control" placeholder="Search books" aria-label="Search books" aria-describedby="button-addon2">
-    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Go</button>
+
+    <!-- <input type="text" class="form-control" placeholder="Search books" aria-label="Search books" aria-describedby="button-addon2">
+    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Go</button> -->
+
+
+   <!-- <input type="text" class="form-control" ng-model="searchText" placeholder="Search..."
+    aria-label="Search..." aria-describedby="button-addon2"> -->
+
+    <!-- <form [formGroup]="updateForm" (ngSubmit)="onUpdate()" >
+      <input class="form-control" type="text" formControlName="description">
+      <button class="btn btn-primary btn-block" type="submit">Go new</button>
+       </form> -->
+   
+
+    <!-- searchBook function here -->
+
+    <!-- 
+    <div ng-init="let book of Books; let i = index" > </div>
+
+    <table id="searchTextResults">
+      <tr ng-repeat="book in Books | filter:searchText">
+      </tr>
+    </table>  -->
+
+
   </div>
+
   
-    <table class="table table-bordered">
+
+    <table  matSort (matSortChange)="sortData($event)">
       <thead>
         <tr>
-          <th scope="col">Id</th>
-          <th scope="col">Name</th>
-<!-- Lisäsin tähän myös kirjailijan -->
-          <th scope="col">Author</th>
-          <th scope="col">Price</th>
-          <th scope="col">Description</th>
-          <th class="text-center" scope="col">Action</th>
+          <th scope="col" mat-sort-header="id">Id</th>
+          <th scope="col" mat-sort-header="name">Name</th>
+      <!-- Lisäsin tähän myös kirjailijan -->
+          <th scope="col" mat-sort-header="author">Author</th>
+          <th scope="col" mat-sort-header="price">Price</th>
+          <th scope="col" mat-sort-header="description">Description</th>
+          <th class="text-center" scope="col" mat-sort-header="action">Action</th>
         </tr>
       </thead>
       <tbody>
+        <tr *ngFor="let book of Books">
+          <td>{{book.id}}</td>
+          <td>{{book.name}}</td>
+          <td>{{book.author}}</td>
+          <td>{{book.price}}</td>
+          <td>{{book.description}}</td>
+          <td>{{book.action}}</td>
+        </tr>
+        <!-- 
         <tr *ngFor="let book of Books; let i = index">
           <th scope="row">{{book._id}}</th>
           <td>{{book.name}}</td>
@@ -34,7 +68,7 @@
           <td class="text-center">
             <button class="btn btn-sm btn-primary" routerLink="/edit-book/{{book._id}}">Edit</button>
             <button class="btn btn-sm btn-danger" (click)="delete(book._id, i)">Delete</button>
-        </tr>
+        </tr> -->
       </tbody>
     </table>
   </div>
