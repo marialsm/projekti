@@ -12,6 +12,9 @@ import { AddBookComponent } from './components/add-book/add-book.component';
 import { BookDetailComponent } from './components/book-detail/book-detail.component';
 import { BooksListComponent } from './components/books-list/books-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SearchFilterPipe } from './search-filter.pipe';
+
+
 
 @NgModule({
   declarations: [
@@ -19,6 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AddBookComponent,
     BookDetailComponent,
     BooksListComponent,
+    SearchFilterPipe,
   ],
   imports: [
     BrowserModule,

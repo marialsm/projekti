@@ -10,8 +10,44 @@
         <a class="nav-link" routerLinkActive="active" routerLink="/add-book">Add Books</a>
       </li>
     </ul>
+<!-- Tähän lisään hakukentän-->
+<!-- 
+<div>
+    <form class="wrap">
+      <div class="search">
+        <h3>Search book by name filter : </h3>
+        <input class="searchTerm" type="text" name="searchTerm" placeholder="Filter by book name"
+          [(ngModel)]="searchTerm" (input)="searchMBooks($any($event))" />
+      </div>
+    </form> 
+    
+    <table class="table table-striped">
+      <thead>--> 
+     <!--   <tr>
+          <th scope="col">id</th>
+          <th scope="col">Name</th>
+          <th scope="col">Price</th>
+          <th scope="col">Author</th>
+        </tr> -->
+  <!-- </thead>
+      <tbody>
+        <tr *ngFor="let book of searchBooks | searchFilter: searchTerm; index as i">
+          <td scope="row">{{ i + 1 }}</td>
+          <td>{{ book.name }}</td>
+          <td>{{ book.price }}</td>
+          <td>{{ book.author }}</td>
+          <td>{{ book.description }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div> -->  
+    
+    <router-outlet></router-outlet>
+
   </div>
 </nav>
 
 
-<router-outlet></router-outlet>
+<router-outlet></router-outlet> 
+
+

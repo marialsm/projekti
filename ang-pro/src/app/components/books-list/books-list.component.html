@@ -17,14 +17,14 @@
 
     <!-- Yritin lisätä filtterit, mutta aina tulee sama virhe "TS2345: Argument of type 'Event' is not assignable to parameter of type 'Sort'.
   Type 'Event' is missing the following properties from type 'Sort': active, direction", jota en ole pystynyt korjaamaan,
-olen yrittänyt etsiä ratkausja, mutta mikään ei auttanut
-      <table matSort (matSortChange)="sortData($event)" class="table table-bordered"> --> 
-    <table class="table table-bordered" id="searchTextResults"> 
+olen yrittänyt etsiä ratkausja, mutta mikään ei auttanut --> 
+    <!--  <table matSort (matSortChange)="sortData($any($event))" class="table table-bordered">
+     <table class="table table-bordered" id="searchTextResults"> 
       <thead>
         <tr >
           <th scope="col" mat-sort-header="id">Id</th>
           <th scope="col" mat-sort-header="name">Name</th>
-      <!-- Lisäsin tähän myös kirjailijan -->
+      <!-- Lisäsin tähän myös kirjailijan 
           <th scope="col" mat-sort-header="author">Author</th>
           <th scope="col" mat-sort-header="price">Price</th>
           <th scope="col" mat-sort-header="description">Description</th>
@@ -38,7 +38,41 @@ olen yrittänyt etsiä ratkausja, mutta mikään ei auttanut
           <td>{{book.author}}</td>
           <td>{{book.price}}</td>
           <td>{{book.description}}</td>
-        </tr> 
+        </tr>  -->
+
+
+        <div>
+          <form class="wrap">
+            <div class="search">
+              <h3>Search book by name filter : </h3>
+              <input class="searchTerm" type="text" name="searchTerm" placeholder="Filter by book name"
+                [(ngModel)]="searchTerm" (input)="searchMBooks($any($event))" />
+            </div>
+          </form>
+          
+          <table class="table table-striped">
+            <thead>
+           <!--   <tr>
+                <th scope="col">id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Author</th>
+              </tr> -->
+           </thead>
+            <tbody>
+              <tr *ngFor="let book of searchBooks | searchFilter: searchTerm; index as i">
+                <td scope="row">{{ i + 1 }}</td>
+                <td>{{ book.name }}</td>
+                <td>{{ book.price }}</td>
+                <td>{{ book.author }}</td>
+                <td>{{ book.description }}</td>
+              </tr>
+         
+         
+   
+
+
+
         
         <tr *ngFor="let book of Books; let i = index">
           <th scope="row">{{book._id}}</th>

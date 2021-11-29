@@ -10,6 +10,7 @@ import { MatSort, Sort } from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {LiveAnnouncer} from '@angular/cdk/a11y';
 import {AfterViewInit, ViewChild} from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 export interface Book {
  _id: String;
@@ -28,11 +29,16 @@ export class BooksListComponent implements OnInit {
   Books: any = [];
   getId: any;
   sortedData: Book[];
+  searchText = '';
+  searchTerm: string | any;
+  searchBooks: Book[] | any;
+  allBooks: Book[] | any;
   // displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
  //  updateForm: FormGroup;
 
  constructor(
-  private crudService: CrudService
+  private crudService: CrudService,
+  private http: HttpClient
   ) {
   // this.updateForm = 0;
   this.sortedData = this.Books.slice();
@@ -44,8 +50,28 @@ export class BooksListComponent implements OnInit {
       this.Books = res;
     });
   }
-  //Tämän olen lisännyt itse
-  // Tämä hakee jonkin tietyn tai tietyt kirjat jonkin ehdon perusteella
+
+  //Yritin luoda funktiot hakukenttää varten myös tähän
+  ngOnInit2(): void {
+    this.http.get<Book[]>('./service/Book')
+      .subscribe((data: Book[]) => {
+        this.searchBooks = data;
+        this.allBooks = this.searchBooks;
+      });
+  }
+
+  //Jotka eivät sitten toimineet
+  searchMBooks(value: string): void {
+    this.Books = this.allBooks.filter((val: { name: string; }) => val.name.toLowerCase().includes(value));
+  }
+
+ // searchMBooks(value: string): void {
+ //   this.searchBooks = this.allBooks.filter((val: { name: string; }) => val.name.toLowerCase().includes(value));
+ // }
+
+
+  //Tämän olen lisännyt myös itse
+  // Yritin luoda toisen funktion hakukenttää varten 
   searchBook(): void {
     this.crudService.SearchBook().subscribe((res) => {
       console.log(res);
