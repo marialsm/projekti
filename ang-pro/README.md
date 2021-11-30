@@ -1,31 +1,38 @@
-# AngPro
+## Yleisesittely
+1. Sovelluksen idea
+Yritin toteuttaa tämän sovelluksen ["Build Angular 12 CRUD Application with Node.js REST API" tutoriaalin pohjalta] (https://www.positronx.io/build-angular-crud-application-with-nodejs-and-express-rest-api/). Sovelluksen idea oli luoda MEAN REST API CRUD -sovellus, jolla pystyisi lisäämään kirjoja listaan, näkemään niitä, poistamaan ja muokkaamaan.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.5.
+2. Toiminnallisuus lyhyesti
+Sovellukseen yhdistetty MongoDB-kirjasto, josta sovellus hakee kirjoja.
+Sovelluksen backend (toteutettu Nodejsllä ja Expressillä) koostuu muutamasta eri funktiosta, joiden tarkoitus näyttää objekteja MongoDB-tietokannasta, lisätä uusia, muokata niitä ja poistaa.
+Frontend on toteutettu Angularilla 12 käyttäen Bootstrapia ja mahdollistaa näiden kaikkien yhdistäminen routien kautta yhdessä paikassa.
+Tiedot, jotka joka funktio ottaa vastaan, validoidaan REST APIlla.
 
-## Development server
+Olen muokannut vähän tutoriaalin koodia ja lisäksi yrin lisätä omat ominaisuudet: hakukenttä sekä filtterit
+listaa varten. 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Kuvaus teknologiosta
+1. Lyhyehkö kuvaus eri teknologioiden käyttämisestä työssä
 
-## Running unit tests
+2. Komennot, joilla kehitysversion saa Githubista omalle koneelle toimimaan
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-Dokumentaatiossa on oltava seuraavat osat
-Yleisesittely
-Sovelluksen idea
-Toiminnallisuus lyhyesti
-Kuvaus teknologiosta
-Lyhyehkö kuvaus eri teknologioiden käyttämisestä työssä
-Komennot, joilla kehitysversion saa Githubista omalle koneelle toimimaan
-Reflektio ja ajankäyttö
-Miten työ onnistui? Mikä oli helppoa, mikä vaikeaa?
-Kuinka paljon käytit aikaa loppuharjoitustyön tekemiseen?
-Mitä tietoja/taitoja sinun tulee vielä kehittää?
+
+## Reflektio ja ajankäyttö
+1. Miten työ onnistui? Mikä oli helppoa, mikä vaikeaa?
+Mielestäni kaikki oli erittäin vaikeaa, jopa tutoriaalin seuraaminen ja kaikki ei ihan heti onnnistunut.
+Jouduin tietty paljon googlaamaan. Olisin toivonut, että minulla olisi enemmän aikaa tämän projektin toteuttamiseen. Ei ihan kaikki ominaisuudet onnistuneet niin kuin haluaisin, mutta
+2. Kuinka paljon käytit aikaa loppuharjoitustyön tekemiseen?
+Noin 50 tuntia.
+3. Mitä tietoja/taitoja sinun tulee vielä kehittää?
+
+
+
+
+
+
+

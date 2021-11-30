@@ -38,7 +38,9 @@ export class CrudService {
 
   // Get single object
   GetBook(id:any): Observable<any> {
+	console.error("foo1");
     let API_URL = `${this.REST_API}/read-book/${id}`;
+	console.log("foo2");
     return this.httpClient.get(API_URL, { headers: this.httpHeaders })
       .pipe(map((res: any) => {
           return res || {}
@@ -46,22 +48,12 @@ export class CrudService {
         catchError(this.handleError)
       )
   }
-    //Tämän olen yrittänyt lisätä funktio hakukenttää varten, eli jotta voisi hakea jotakin kirjaa/kirjoja
-    //  jonkun ehdon perusteella, mikä ei onnustunut 
-  
-  SearchBook(): Observable<any> {
-    let API_URL = `${this.REST_API}/read-book/^G.*`;
-    return this.httpClient.get(API_URL, { headers: this.httpHeaders })
-      .pipe(map((res: any) => {
-          return res || {}
-         }),
-        catchError(this.handleError)
-       )
-  }
 
-  //Tähän olen yritänyt lisätä funktion, jonka avulla voisi sortata esim. kirjailijoita, mikä ei toimi
-    FilterAuthor(): Observable<any> {
-      let API_URL = `${this.REST_API}/read-book/'author':1`;
+    GetSomeBooks(txt:any): Observable<any> {
+	  console.log('*** GetSomeBooks:' + txt);
+      let API_URL = `${this.REST_API}/read-books/${txt}`;
+      //let API_URL = `${this.REST_API}/read-books/b`;
+	  console.log('*** GetSomeBooks API_URL:' + API_URL);
       return this.httpClient.get(API_URL, { headers: this.httpHeaders })
         .pipe(map((res: any) => {
             return res || {}
@@ -69,8 +61,25 @@ export class CrudService {
           catchError(this.handleError)
         )
     }
-    
 
+
+    //Tämän olen lisännyt itse 
+    // Hae jokin tietty tai tietyt kirjat jonkun ehdon perusteella
+    GetBooks2(): Observable<any> {
+      let API_URL = `${this.REST_API}/read-books/^G.*`;
+      return this.httpClient.get(API_URL, { headers: this.httpHeaders })
+        .pipe(map((res: any) => {
+            return res || {}
+          }),
+          catchError(this.handleError)
+        )
+    }
+
+
+    GetBooks3(): Observable<any> {
+      console.log("hello3");
+      return new Observable<any>();
+    }
 
   // Update
   updateBook(id:any, data:any): Observable<any> {
@@ -103,5 +112,8 @@ export class CrudService {
     console.log(errorMessage);
     return throwError(errorMessage);
   }
+
+  
+
 
 }

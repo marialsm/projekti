@@ -1,47 +1,75 @@
 <div class="container">
-  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <div
+    class="
+      d-flex
+      justify-content-between
+      flex-wrap flex-md-nowrap
+      align-items-center
+      pt-3
+      pb-2
+      mb-3
+      border-bottom
+    "
+  >
     <h2 class="h2">Books List</h2>
   </div>
 
-  
-
- <div class="table-responsive">
-   <!-- Yritin lisätä tähän hakukentän, johon voisi syöttää tekstiä ja sitten, kun painaa Go-nappia, 
+  <div class="table-responsive">
+    <!-- Yritin lisätä tähän hakukentän, johon voisi syöttää tekstiä ja sitten, kun painaa Go-nappia, 
   näkyisi tulokset, mutta sekään ei onnistunut, en ymmärrä missä vika.-->
-  <div class="input-group mb-3">
-    <input type="text" class="form-control" placeholder="Search books" aria-label="Search books" aria-describedby="button-addon2">
-    <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="searchBook()" >Go</button>
-    
-    <!-- <button (click)="authorFilter()" > AuthorFilter </button> -->
-  </div> 
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search books"
+        aria-label="Search books"
+        aria-describedby="button-addon2"
+        #MySearchBar
+      />
+      <button
+        class="btn btn-outline-secondary"
+        type="button"
+        id="button-addon2"
+        (click)="searchbook(this.MySearchBar.value)"
+      >
+        Go
+      </button>
+
+      <!-- <button (click)="authorFilter()" > AuthorFilter </button> -->
+    </div>
 
     <!-- Yritin lisätä filtterit, mutta aina tulee sama virhe "TS2345: Argument of type 'Event' is not assignable to parameter of type 'Sort'.
   Type 'Event' is missing the following properties from type 'Sort': active, direction", jota en ole pystynyt korjaamaan,
-olen yrittänyt etsiä ratkausja, mutta mikään ei auttanut --> 
-    <!--  <table matSort (matSortChange)="sortData($any($event))" class="table table-bordered">
-     <table class="table table-bordered" id="searchTextResults"> 
+olen yrittänyt etsiä ratkausja, mutta mikään ei auttanut -->
+    <table
+      matSort
+      (matSortChange)="sortData($any($event))"
+      class="table table-bordered"
+    >
+      <!-- <table class="table table-bordered" id="searchTextResults"> -->
       <thead>
-        <tr >
+        <tr>
           <th scope="col" mat-sort-header="id">Id</th>
           <th scope="col" mat-sort-header="name">Name</th>
-      <!-- Lisäsin tähän myös kirjailijan 
+          <!-- Lisäsin tähän myös kirjailijan -->
           <th scope="col" mat-sort-header="author">Author</th>
           <th scope="col" mat-sort-header="price">Price</th>
           <th scope="col" mat-sort-header="description">Description</th>
-          <th class="text-center" scope="col" mat-sort-header="action">Action</th> 
+          <th class="text-center" scope="col" mat-sort-header="action">
+            Action
+          </th>
         </tr>
       </thead>
-      <tbody> 
-       <tr *ngFor="let book of sortedData">
-          <td>{{book._id}}</td>
-          <td>{{book.name}}</td>
-          <td>{{book.author}}</td>
-          <td>{{book.price}}</td>
-          <td>{{book.description}}</td>
-        </tr>  -->
+      <tbody>
+        <tr *ngFor="let book of sortedData">
+          <td>{{ book._id }}</td>
+          <td>{{ book.name }}</td>
+          <td>{{ book.author }}</td>
+          <td>{{ book.price }}</td>
+          <td>{{ book.description }}</td>
+        </tr>
 
-
-        <div>
+        <!--  <div>
           <form class="wrap">
             <div class="search">
               <h3>Search book by name filter : </h3>
@@ -52,38 +80,48 @@ olen yrittänyt etsiä ratkausja, mutta mikään ei auttanut -->
           
           <table class="table table-striped">
             <thead>
-           <!--   <tr>
+           <tr>
                 <th scope="col">id</th>
                 <th scope="col">Name</th>
                 <th scope="col">Price</th>
                 <th scope="col">Author</th>
-              </tr> -->
-           </thead>
-            <tbody>
-              <tr *ngFor="let book of searchBooks | searchFilter: searchTerm; index as i">
-                <td scope="row">{{ i + 1 }}</td>
-                <td>{{ book.name }}</td>
-                <td>{{ book.price }}</td>
-                <td>{{ book.author }}</td>
-                <td>{{ book.description }}</td>
               </tr>
-         
-         
-   
+           </thead>  -->
+      </tbody>
 
-
-
-        
-        <tr *ngFor="let book of Books; let i = index">
-          <th scope="row">{{book._id}}</th>
-          <td>{{book.name}}</td>
-          <td>{{book.author}}</td>
-          <td>{{book.price}}</td>
-          <td>{{book.description}}</td>
-          <td class="text-center">
-            <button class="btn btn-sm btn-primary" routerLink="/edit-book/{{book._id}}"> Edit </button>
-            <button class="btn btn-sm btn-danger" (click)="delete(book._id, i)"> Delete </button>
+      <tbody>
+        <tr
+          *ngFor="
+            let book of searchBooks | searchFilter: searchTerm;
+            index as i
+          "
+        >
+          <td scope="row">{{ i + 1 }}</td>
+          <td>{{ book.name }}</td>
+          <td>{{ book.price }}</td>
+          <td>{{ book.author }}</td>
+          <td>{{ book.description }}</td>
         </tr>
-     </tbody>
-    </table> 
-</div> 
+
+        <tr *ngFor="let book of Books; let i = index">
+          <th scope="row">{{ book._id }}</th>
+          <td>{{ book.name }}</td>
+          <td>{{ book.author }}</td>
+          <td>{{ book.price }}</td>
+          <td>{{ book.description }}</td>
+          <td class="text-center">
+            <button
+              class="btn btn-sm btn-primary"
+              routerLink="/edit-book/{{ book._id }}"
+            >
+              Edit
+            </button>
+            <button class="btn btn-sm btn-danger" (click)="delete(book._id, i)">
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

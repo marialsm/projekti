@@ -31,11 +31,11 @@ bookRoute.route('/').get((req, res) => {
 
 // Get Book
 bookRoute.route('/read-book/:id').get((req, res) => {
-  console.log('test2');
-  
+  console.log('test2.1');
     Book.findById(req.params.id, (error, data) => {
+  console.log('test2.2');
     if (error) {
-      return next(error)
+      return error //next(error)
     } else {
       res.json(data)
     }
@@ -43,17 +43,18 @@ bookRoute.route('/read-book/:id').get((req, res) => {
 })
 
 // Get some exact book/s
-bookRoute.route('/read-books/:author').get((req, res) => {
+bookRoute.route('/read-books/:txt').get((req, res) => {
   console.log('test');
   console.log(req.params);
-  console.log(req.params.author);
-  Book.find({author: { '$regex': req.params.author, '$options': 'i' }}, {}, (error, data) => {
+  console.log(req.params.txt);
+ // Book.find({name: { '$regex': req.params.txt, '$options': 'i' }}, {}, (error, data) => { 
+    Book.find({$or: [{name: {"$regex": req.params.txt, "$options": "i"}}, {author: {"$regex": req.params.txt, "$options":"i"}}]}, {}, (error, data) => { 
   if (error) {
     return next(error)
   } else {
     res.json(data)
   }
-}).collation({'locale':'en'}).sort({'author':1});
+}).collation({'locale':'en'}).sort({'name':1});
 })
 
 
