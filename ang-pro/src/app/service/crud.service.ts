@@ -49,6 +49,8 @@ export class CrudService {
       )
   }
 
+   //Tämän olen lisännyt itse 
+    // Hae jokin tietty tai tietyt kirjat jonkun ehdon perusteella
     GetSomeBooks(txt:any): Observable<any> {
 	  console.log('*** GetSomeBooks:' + txt);
       let API_URL = `${this.REST_API}/read-books/${txt}`;
@@ -62,24 +64,6 @@ export class CrudService {
         )
     }
 
-
-    //Tämän olen lisännyt itse 
-    // Hae jokin tietty tai tietyt kirjat jonkun ehdon perusteella
-    GetBooks2(): Observable<any> {
-      let API_URL = `${this.REST_API}/read-books/^G.*`;
-      return this.httpClient.get(API_URL, { headers: this.httpHeaders })
-        .pipe(map((res: any) => {
-            return res || {}
-          }),
-          catchError(this.handleError)
-        )
-    }
-
-
-    GetBooks3(): Observable<any> {
-      console.log("hello3");
-      return new Observable<any>();
-    }
 
   // Update
   updateBook(id:any, data:any): Observable<any> {
@@ -112,8 +96,6 @@ export class CrudService {
     console.log(errorMessage);
     return throwError(errorMessage);
   }
-
-  
 
 
 }

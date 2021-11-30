@@ -43,11 +43,12 @@ bookRoute.route('/read-book/:id').get((req, res) => {
 })
 
 // Get some exact book/s
+//Tämän olen lisännyt itse, eli tämä on funktio hakukenttää varten, jolla voi etsiä kirjojen nimiä tai kirjailijoita
+//Eli sen kirjaimen tai sanan perusteella, löytyy jokin kirja
 bookRoute.route('/read-books/:txt').get((req, res) => {
   console.log('test');
   console.log(req.params);
-  console.log(req.params.txt);
- // Book.find({name: { '$regex': req.params.txt, '$options': 'i' }}, {}, (error, data) => { 
+  console.log(req.params.txt); 
     Book.find({$or: [{name: {"$regex": req.params.txt, "$options": "i"}}, {author: {"$regex": req.params.txt, "$options":"i"}}]}, {}, (error, data) => { 
   if (error) {
     return next(error)
